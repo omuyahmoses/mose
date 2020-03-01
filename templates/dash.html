@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>dash</title>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/userdash.css')}}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous">
+    </script>
+    <style>
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            margin-bottom: 10%;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: #2980B9;
+        }
+
+        .dropdown {
+            padding: 24%;
+            display: block;
+
+        }
+
+        .dropdown-content {
+            display: none;
+            margin-left: 3%;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <!--topnav/content-->
+    <div class="row">
+        <div class="dash">
+            <div class="identity">
+                <form action="" class="search">
+                    <input type="text" placeholder="search..." name="search2">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+
+            </div>
+            <div class="menu">
+                <h3>logout</h3>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row">
+            <div class="container">
+                <div class="row1">
+                    <div>
+                        <img src="{{url_for('static',filename='img/house1.jpg')}}" class="img">
+                    </div>
+                    <div class="description">
+                        <div class="icon">
+                            <div class="location">
+                                <h6>kasarani Mwiki</h6>
+                            </div>
+                            <div class="myicon">
+                                <i class="far fa-thumbtack"></i>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+
+                        <div class="remark">
+
+                            <h3>description</h3>
+                            <p>3 bedroom house spacius kitchen and bathroom.
+                                in Nairobi kasarani along mikora road</p>
+                            <a href="#" style="color: red;">
+                                <P>More details...</P>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row1">
+                    <div>
+                        <a href="#"> <img src="{{url_for('static',filename='img/house2.webp')}}" class="img"></a>
+                    </div>
+                    <div class="description">
+                        <div class="icon">
+                            <div class="location">
+                                <h6>roysambu</h6>
+                            </div>
+                            <div class="myicon">
+                                <i class="far fa-thumbtack"></i>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+
+                        <div class="remark">
+
+                            <h3>description</h3>
+                            <p>3 bedroom house spacius kitchen and bathroom.
+                                in Nairobi kasarani along mikora road</p>
+                            <a href="/property" style="color: red;">
+                                <P>More details...</P>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="container ">
+                <div class="row1">
+                    <div>
+                        <a href="#"> <img src="{{url_for('static',filename='img/house3.webp')}}" class="img"></a>
+                    </div>
+                    <div class="description">
+                        <div class="icon">
+                            <div class="location">
+                                <h6>kitengela</h6>
+                            </div>
+                            <div class="myicon">
+                                <i class="far fa-thumbtack"></i>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+
+                        <div class="remark">
+
+                            <h3>description</h3>
+                            <p>3 bedroom house spacius kitchen and bathroom.
+                                in Nairobi kasarani along mikora road</p>
+                            <a href="#" style="color: red;">
+                                <P>More details...</P>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row1">
+                    <div>
+                        <a href="#"> <img src="{{url_for('static',filename='img/house1.jpg')}}" class="img"></a>
+                    </div>
+                    <div class="description">
+                        <div class="icon">
+                            <div class="location">
+                                <h6>buruburu</h6>
+                            </div>
+                            <div class="myicon">
+                                <i class="far fa-thumbtack"></i>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+
+                        <div class="remark">
+
+                            <h3>description</h3>
+                            <p>3 bedroom house spacius kitchen and bathroom.
+                                in Nairobi kasarani along mikora road</p>
+                            <a href="#" style="color: red;">
+                                <P>More details...</P>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--side bar-->
+    <div class="sidenav">
+        <div class="header">
+            <h2>iCrib</h2>
+            <h3>welcome back</h3>
+        </div>
+        <h5>Some deals you may like.</h5>
+        <h6>click to view more details</h6>
+        <div class="dropdown" id="dropdown">
+            <button onclick="myFunction()" class="dropbtn">locations</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#home">Kitengela</a>
+                <a href="#about">Kiambu</a>
+                <a href="#contact">buruburu</a>
+            </div>
+            <button onclick="myFunction()" class="dropbtn">locations</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#home">Kitengela</a>
+                <a href="#about">Kiambu</a>
+                <a href="#contact">buruburu</a>
+            </div>
+        </div>
+
+    </div>
+    <!--pannel section-->
+
+    <div class="row">
+        <div class="footer">
+            <div class="copyright">
+                <p>&copy; 2020 copyright<p>
+            </div>
+        </div>
+    </div>
+    <script>
+        /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            $('#dropdown').click(function () {
+                $('#myDropdown').toggle()
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<html>
+
+<head>
+    <title>property</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/property.css')}}" />
+    <style>
+        .dash {
+            width: 90%;
+            color: black;
+            margin-left: 5%;
+            background-color: #f9f9f9;
+            display: inline-flex;
+        }
+
+        .dash .header {
+            float: left;
+            color: grey;
+            margin-right: 55%;
+        }
+
+        .dash .menu ul {
+            margin-right: 0%;
+            list-style: none;
+            display: inline-flex;
+            float: right;
+        }
+
+        .dash .menu ul li {
+            margin-right: 7%;
+            margin-left: 7%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="dash">
+            <div class="header">
+                <h5>houser number</h5>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#gallery" style="color: black;text-decoration: none; font-size: large;"> gallery</a>
+                    </li>
+                    <li><a href="#description" style="color: black;text-decoration: none;font-size: large;">details </a>
+                    </li>
+                    <li><a href="#location" style="color: black;text-decoration: none;font-size: large;">map</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <!--photos section-->
+    <div class="newrow">
+        <div>
+            <img class="firstrow" src="{{url_for('static',filename='img/house1.jpg')}}">
+        </div>
+        <div>
+            <img class="secondrow" src="{{url_for('static',filename='img/house2.webp')}}">
+        </div>
+        <div>
+            <img class="thirdrow" src="{{url_for('static',filename='img/house3.webp')}}">
+        </div>
+    </div>
+    <div class="anotherrow">
+        <div class="description" id="description">
+            <h3>Nairobi kitengela.Kampi ya Karin</h3>
+            <h5>Off mombasa road at kitengela junction .<a href="#"
+                    style="color: red;text-decoration:none;margin-left:15%;">map</a></h5>
+            <h4>House structure</h4>
+            <p>3 guests 1 bedroom 2 beds 1.5 baths</p>
+            <h4>space description</h4>
+            <p>The property is situated on the southern unfenced borders of Nairobi National Park. We have plenty of
+                game all year round as well as a resident bush baby (Bo-Jangles) and an Egyptian goose couple (Gus &
+                Frieda).
+                The guest loft occupies the second floor of the house and has a private terrace offering beautiful views
+                on garden and park. The en suite bathroom features a spacious shower, vanity area and a beautiful
+                bathtub which is perfectly placed for our famous 'bathtub game viewing' - a very unique luxury, only the
+                Kampi offers in the entire Nairobi National Park area.
+                At the Kampi you will be served breakfast. For lunch & dinner you have full access to a generously
+                spaced kitchen with all amenities, including your own fridge and storage space. If you arrange your
+                transfer to the Kampi with us, a stop for shopping at the Hardy Post/ Hardy Provision Store (a very well
+                assorted deli supermarket in Karen) is included in the transport fare. Take-away meals may also be
+                ordered from the restaurants in the environs.
+                Guests may use the entire house including living room with fireplace, kitchen, dining, terrace and the
+                ample garden as well as a dedicated car shelter if required. I live at the Kampi and will be sharing the
+                premises with you.
+            </p>
+            <div class="book">
+                <form action="/bookspace" method="GET">
+                    <input type="submit" value="book">
+                </form>
+            </div>
+        </div>
+        <div class="billing">
+            <h3 style="text-align: center;">
+                Monthly expences.
+
+            </h3>
+            <hr style="width: 44%;">
+            <div class="rent">
+                <h3 style="text-transform: none;">Rent.</h3>
+                <h5>Ksh. 24,780</h5>
+            </div>
+            <div class="water">
+                <h3 style="text-transform: none;">
+                    Water & Electricity
+                </h3>
+                <h5>Ksh. 3,000</h5>
+            </div>
+            <div class="internet$tv">
+                <h3 style="text-transform: none;">
+                    Internet & TV bills
+                </h3>
+                <h5>Ksh. 5,000</h5>
+            </div>
+            <div class="otherexpenses">
+                <h3 style="text-transform: none;">
+                    Other monthly expenses
+                </h3>
+                <h5>Ksh. 3,000</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="gallery" id="gallery">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="location" id="location">
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>mydash</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/landowner.css')}}">
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="dash">
+            <div class="profile">
+                <img class='myprofile' src="{{url_for('static',filename='img/myAvatar.png')}}">
+                <h3>owner</h3>
+            </div>
+            <div class="navlist">
+                <div class="home">
+                    <a href="#myproperty">
+                        <h3>my property</h3>
+                    </a>
+                </div>
+                <div class="home">
+                    <a href="#update">
+                        <h3>update information</h3>
+                    </a>
+                </div>
+                <div class="home">
+                    <a href="#add">
+                        <h3>add new property</h3>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+        <hr>
+    </div>
+
+    <div id="myproperty" class="myproperty">
+        <div>
+            <img class="image1" src="{{url_for('static',filename='img/house2.webp')}}">
+            <div class="props">
+                <h3>Nairobi kitengela.Kampi ya Karin</h3>
+                <h5>Off mombasa road at kitengela junction .<a href="maps.html" style="color: red;">Check map here</a>
+                </h5>
+                <h4>House structure</h4>
+                <p>3 guests 1 bedroom 2 beds 1.5 baths</p>
+                <h4>space description</h4>
+                <p>
+                    The property is situated on the southern unfenced borders of Nairobi National Park. We have plenty
+                    of
+                    game all year round as well as a resident bush baby (Bo-Jangles) and an Egyptian goose couple (Gus &
+                    Frieda).
+                    The guest loft occupies the second floor of the house and has a private terrace offering beautiful
+                    views
+                    on garden and park. The en suite bathroom features a spacious shower, vanity area and a beautiful
+                    bathtub which is perfectly placed for our famous 'bathtub game viewing' - a very unique luxury, only
+                    the
+                    Kampi offers in the entire Nairobi National Park area.
+                    At the Kampi you will be served breakfast. For lunch & dinner you have full access to a generously
+                    spaced kitchen with all amenities, including your own fridge and storage space. If you arrange your
+                    transfer to the Kampi with us, a stop for shopping at the Hardy Post/ Hardy Provision Store (a very
+                    well
+                    assorted deli supermarket in Karen) is included in the transport fare. Take-away meals may also be
+                    ordered from the restaurants in the environs.
+                    Guests may use the entire house including living room with fireplace, kitchen, dining, terrace and
+                    the
+                    ample garden as well as a dedicated car shelter if required. I live at the Kampi and will be sharing
+                    the
+                    premises with you.
+                </p>
+                <a href="#" style="color: red; text-decoration: none;">edit</a>
+            </div>
+        </div>
+        <div>
+            <img class="image2" src="{{url_for('static',filename='img/house2.webp')}}">
+            <div class="props1">
+                <h3>Nairobi kitengela.Kampi ya Karin</h3>
+                <h5>Off mombasa road at kitengela junction .<a href="#" style="color: red;">Check map here</a>
+                </h5>
+                <h4>House structure</h4>
+                <p>3 guests 1 bedroom 2 beds 1.5 baths</p>
+                <h4>space description</h4>
+                <p>
+                    The property is situated on the southern unfenced borders of Nairobi National Park. We have plenty
+                    of
+                    game all year round as well as a resident bush baby (Bo-Jangles) and an Egyptian goose couple (Gus &
+                    Frieda).
+                    The guest loft occupies the second floor of the house and has a private terrace offering beautiful
+                    views
+                    on garden and park. The en suite bathroom features a spacious shower, vanity area and a beautiful
+                    bathtub which is perfectly placed for our famous 'bathtub game viewing' - a very unique luxury, only
+                    the
+                    Kampi offers in the entire Nairobi National Park area.
+                    At the Kampi you will be served breakfast. For lunch & dinner you have full access to a generously
+                    spaced kitchen with all amenities, including your own fridge and storage space. If you arrange your
+                    transfer to the Kampi with us, a stop for shopping at the Hardy Post/ Hardy Provision Store (a very
+                    well
+                    assorted deli supermarket in Karen) is included in the transport fare. Take-away meals may also be
+                    ordered from the restaurants in the environs.
+                    Guests may use the entire house including living room with fireplace, kitchen, dining, terrace and
+                    the
+                    ample garden as well as a dedicated car shelter if required. I live at the Kampi and will be sharing
+                    the
+                    premises with you.
+                </p>
+                <a href="" style="color: red; text-decoration: none;">edit</a>
+            </div>
+
+        </div>
+    </div>
+    <div id="border" class="border">
+        <img src="{{url_for('static',filename='img/banner1.jpg')}}" class="borderimage">
+        <div class="textbox">
+            <h4>luxury</h4>
+            <p>some of our serene appartments</p>
+        </div>
+    </div>
+    <div id="update" class="update">
+        <div class="myform">
+            <h3>reserve a space</h3>
+            <h5>highlighted fields must be filled</h5>
+            <form action="/reserve" method="post">
+                <label for="name"><a>*</a>full names :</label>
+                <input type="text" name="name" name="name" placeholder="Your full names.." required /><br />
+                <label for="famsize">size of expected occupants:</label>
+                <input type="number" name="famsize" id="famsize" placeholder="regular house occupants.." /><br />
+                <label for="Phone"><a>*</a>phone number:</label>
+                <input type="number" name="phone" placeholder="official phone number.." required /><br />
+                <label for="email"><a>*</a>email:</label>
+                <input type="text" name="email" id="email" placeholder="email.." required /><br />
+                <label for="name"><a>*</a>expected movein date date:</label>
+                <input type="date" name="moveindate" required /><br />
+                <input type="submit" value="reserve" />
+            </form>
+        </div>
+    </div>
+    <div id="border" class="border">
+        <img src="{{url_for('static',filename='img/banner1.jpg')}}" class="borderimage">
+        <div class="textbox">
+            <h4>even more</h4>
+            <p>some of our best</p>
+        </div>
+    </div>
+
+    <div id="add" class="add">
+        <div class="myform">
+            <h3>reserve a space</h3>
+            <h5>highlighted fields must be filled</h5>
+            <form action="/reserve" method="post">
+                <label for="name"><a>*</a>full names :</label>
+                <input type="text" name="name" name="name" placeholder="Your full names.." required /><br />
+                <label for="famsize">size of expected occupants:</label>
+                <input type="number" name="famsize" id="famsize" placeholder="regular house occupants.." /><br />
+                <label for="Phone"><a>*</a>phone number:</label>
+                <input type="number" name="phone" placeholder="official phone number.." required /><br />
+                <label for="email"><a>*</a>email:</label>
+                <input type="text" name="email" id="email" placeholder="email.." required /><br />
+                <label for="name"><a>*</a>expected movein date date:</label>
+                <input type="date" name="moveindate" required /><br />
+                <input type="submit" value="reserve" />
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,16 +1,20 @@
-from flask import Flask, render_template, url_for, session, redirect, jsonify, request, jsonify
+from flask import Flask, render_template, url_for, session, redirect, jsonify, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, PasswordField, DateField, BooleanField, TextAreaField, FileField, RadioField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import InputRequired, Email, length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+
 import os
 
-from werkzeug.utils import secure_filename
+
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
+
+# photos = UploadSet('photos', IMAGES)
 
 
 # database models
@@ -30,7 +34,7 @@ class users(db.Model):
     contacts = db.relationship(
         'contacts', backref='users', lazy=True, primaryjoin="users.id == contacts.user")
     rentals = db.relationship('rentalowner', backref='users',
-                              lazy=True, primaryjoin="users.id == rentalowner.rental_id")
+                              lazy=True, primaryjoin="users.id == rentalowner.owner")
 
 
 class bookings(db.Model):
@@ -45,13 +49,16 @@ class rentals(db.Model):
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
     location = db.Column(db.String(100), nullable=False)
-    features = db.Column(db.String(300), nullable=False)
+    type = db.Column(db.String(100))
+    bathrooms = db.Column(db.Integer)
+    bedrooms = db.Column(db.Integer)
+    size = db.Column(db.Integer)
     description = db.Column(db.String(1000), nullable=False)
     price = db.Column(db.Integer, nullable=False)
     bookings = db.relationship('bookings', backref='rentals',
                                lazy=True, primaryjoin="rentals.id == bookings.rental_id")
     rentals = db.relationship('rentalowner', backref='rentals',
-                              lazy=True, primaryjoin="rentals.id == rentalowner.rental_id")
+                              lazy=True, primaryjoin="rentals.id == rentalowner.rental")
     images = db.relationship('images', backref='rentals',
                              lazy=True, primaryjoin='rentals.id == images.rental')
 
@@ -68,7 +75,7 @@ class images(db.Model):
                    primary_key=True, autoincrement=True)
     rental = db.Column(db.Integer, db.ForeignKey(
         'rentals.id'), nullable=False)
-    image_url = db.Column(db.LargeBinary)
+    image_url = db.Column(db.String)
 
 
 class profiles(db.Model):
@@ -126,9 +133,9 @@ class spaceupload(FlaskForm):
         '1', 'bungallow'), ('2', 'mansionete'), ('3', 'appartment')])
     bedrooms = IntegerField('bedrooms')
     bathrooms = IntegerField('bathrooms')
-    squarefeet = IntegerField('squarefeet')
+    size = IntegerField('squarefeet')
     images = FileField('images')
-# image checker
+# file checker
 
 
 def allowed_image(filename):
@@ -267,25 +274,46 @@ def newrental():
 def upload():
     form = spaceupload()
     if "user" in session:
-        if request.method == 'POST':
-            if form.images:
-                image = request.files['images']
-                if allowed_image(image.filename):
-                    filename = secure_filename(image.filename)
-                    new_image = images(
-                        rental=form.email.data, image_url=filename)
-                    db.session.add(new_image)
-                    db.session.commit()
-                    image.save(os.path.join(
-                        app.config['UPLOAD_IMAGE'], filename))
-                    new_rental = rentals(
-                        rental=form.email.data, image_url=filename)
-                    db.session.add(new_rental)
-                    db.session.commit()
-                    return redirect(url_for('admin'))
-                else:
-                    print('Image isnt really apealing')
-                    return redirect(request.url)
+        if request.method == 'POST' and 'images' in request.files:
+            #         # commit to table rentals
+            new_rental = rentals(
+                location=form.location.data, description=form.description.data, price=form.price.data,
+                bedrooms=form.bedrooms.data, bathrooms=form.bathrooms.data, size=form.size.data,
+                type=form.type.data)
+            db.session.add(new_rental)
+            db.session.commit()
+            id = new_rental.id
+            #         # commit to relationship table
+            owner_id = session['id']
+            newrelation = rentalowner(owner=owner_id, rental=id)
+            db.session.add(newrelation)
+            db.session.commit()
+            # commit image to image directorate
+            #image_url = photos.save(filename)
+            #         new_image = images(
+            #             rental=id, image_url=image_url)
+            #         db.session.add(new_image)
+            #         db.session.commit()
+            #         image.save(os.path.join(
+            #             app.config['UPLOADED_IMAGE_DEST'], filename))
+            #         return redirect(url_for('admin'))
+            #     else:
+            #         print('Image isnt really apealing')
+            #         return redirect(request.url)
+            image = request.files['images']
+            filename = secure_filename(image.filename)
+            accepted = allowed_image(filename)
+            if accepted == True:
+                image.save(os.path.join(
+                    app.config['UPLOADED_IMAGE_DEST'], filename))
+                image_url = app.config['UPLOADED_IMAGE_DEST'] + filename
+                new_image = images(rental=id, image_url=image_url)
+                db.session.add(new_image)
+                db.session.commit()
+                return redirect(url_for('admin'))
+            else:
+                return redirect(request.url)
+
         else:
             error = "The details were not correct.Please try again"
             return render_template('uploadspace.html', errormessage=error, form=spaceupload())

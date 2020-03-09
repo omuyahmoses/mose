@@ -55,9 +55,9 @@
                 <label for="features">bathrooms:</label>
                 {{form.bathrooms}}<br>
                 <label for="features">size <label style='color: red;'>*square feet:</label></label>
-                {{form.squarefeet}}<br>
+                {{form.size}}<br>
                 <label for="mages">images:</label>
-                <input type="file" name='images' accept='image/*'><br>
+                <input type="file" oninput='filesize(this);' name='images' accept='image/*'><br>
                 <label for="details">brief description:</label>
                 {{form.description}}<br>
                 <input type="submit" value="upload" />
@@ -65,8 +65,13 @@
         </div>
     </div>
 
-    <body>
+    <script>
+        function filesize(elem) {
+            console.log(elem)
+        }
+    </script>
 
-    </body>
+
+</body>
 
 </html>

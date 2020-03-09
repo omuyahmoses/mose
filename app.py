@@ -6,16 +6,47 @@ from wtforms.validators import InputRequired, Email, length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-
+from flask_marshmallow import Marshmallow, Schema
+import json
 import os
 
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
+marsh = Marshmallow(app)
 
-# photos = UploadSet('photos', IMAGES)
+# create owner-rental schema
 
+
+class ownerrenntalSchema(marsh.Schema):
+    class Meta:
+        fields = ('owner', 'rental')
+
+
+class imageurl(marsh.Schema):
+    class Meta:
+        fields = ('rental', 'image_url')
+
+
+class rentalfeatures(marsh.Schema):
+    class Meta:
+        fields = ('location', 'description', 'price',
+                  'bedrooms', 'bathrooms', 'size', 'type')
+# init schema
+
+
+# rental detail schema
+rentalfeature = rentalfeatures()
+rentalsfeature = rentalfeatures(many=True)
+
+# imageurl schema
+image_url = imageurl()
+image_urls = imageurl(many=True)
+
+# rentalowner schema
+ownerrental_schema = ownerrenntalSchema()
+ownerrental_schemas = ownerrenntalSchema(many=True)
 
 # database models
 
@@ -106,6 +137,10 @@ class reg(FlaskForm):
         InputRequired(), length(min=8, max=80)])
 
 
+class changeacc(FlaskForm):
+    email = StringField('email', nullable=False)
+
+
 class Login(FlaskForm):
     email = StringField('email', validators=[
         InputRequired(), length(min=10, max=20)])
@@ -130,7 +165,7 @@ class spaceupload(FlaskForm):
     description = TextAreaField('description', validators=[
         InputRequired(), length(min=200, max=2000)])
     type = RadioField('housetype', choices=[(
-        '1', 'bungallow'), ('2', 'mansionete'), ('3', 'appartment')])
+        'bungallow', 'bungallow'), ('mansionete', 'mansionete'), ('appartment', 'appartment')])
     bedrooms = IntegerField('bedrooms')
     bathrooms = IntegerField('bathrooms')
     size = IntegerField('squarefeet')
@@ -158,8 +193,21 @@ def main():
 @app.route('/admin', methods=['POST', 'GET'])
 def admin():
     if "user" in session:
-        myform = spaceupload()
-        return render_template('landlord.html', form=myform)
+        id = session['id']
+        rental = rentalowner.query.filter_by(owner=id).all()
+        allrental = ownerrental_schemas.dumps(rental)
+        allrentals = ownerrental_schemas.jsonify(allrental)
+        newobjects = json.loads(allrental)
+        for objects in newobjects:
+            rentalsobjects = objects['rental']
+            rentaldesc = rentals.query.filter_by(id=rentalsobjects).all()
+            rentaldescript = rentalsfeature.dumps(rentaldesc)
+            print(rentaldescript)
+            # imageurl = images.query.filter_by(rental=rentals).all()
+            # myimageurls = image_urls.dumps(imageurl)
+            # realurl = image_urls.jsonify(myimageurls)
+            # print(myimageurls)
+        return render_template('landlord.html')
     else:
         return render_template('index.html')
 
@@ -248,6 +296,7 @@ def register():
     if form.password.data == form.password2.data:
         hashed_password = generate_password_hash(
             form.password.data, method='sha256')
+        accounttype = form.accounttype.data
         new_user = users(username=form.username.data,
                          email=form.email.data, clearance="user", password=hashed_password)
         db.session.add(new_user)
@@ -288,18 +337,7 @@ def upload():
             newrelation = rentalowner(owner=owner_id, rental=id)
             db.session.add(newrelation)
             db.session.commit()
-            # commit image to image directorate
-            #image_url = photos.save(filename)
-            #         new_image = images(
-            #             rental=id, image_url=image_url)
-            #         db.session.add(new_image)
-            #         db.session.commit()
-            #         image.save(os.path.join(
-            #             app.config['UPLOADED_IMAGE_DEST'], filename))
-            #         return redirect(url_for('admin'))
-            #     else:
-            #         print('Image isnt really apealing')
-            #         return redirect(request.url)
+            # commit image url to db and image to the directorate
             image = request.files['images']
             filename = secure_filename(image.filename)
             accepted = allowed_image(filename)

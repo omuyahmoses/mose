@@ -220,7 +220,7 @@ form.search::after {
     display: inline-flex;
     margin-top: 0%;
     background-color: black;
-    color: #0000;
+    color: #f9f9f9f9;
     width: 100%;
     font-size: small;
 }
@@ -228,6 +228,6 @@ form.search::after {
 .row .footer .copyright {
     margin-top: 15px;
     margin-right: 50%;
-    color: #0000;
+    color: #f9f9f9f9;
     margin-left: 10%;
 }

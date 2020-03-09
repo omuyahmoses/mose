@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>status report</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/landowner.css')}}">
+</head>
+
+<body>
+    <div class="row">
+        <div class="dash">
+            <div class="profile">
+                <img class='myprofile' src="{{url_for('static',filename='img/myAvatar.png')}}">
+                <h3>owner</h3>
+            </div>
+            <div class="navlist">
+                <div class="home">
+                    <a href="{{url_for('admin')}}">
+                        <h3>my property</h3>
+                    </a>
+                </div>
+                <div class="home">
+                    <a href="{{url_for('rentalstatus')}}">
+                        <h3>view status</h3>
+                    </a>
+                </div>
+                <div class="home">
+                    <a href="{{url_for('newrental')}}">
+                        <h3>add new property</h3>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+        <hr>
+    </div>
+    <div id="add" class="add">
+        <h6><a href="#" onclick="history.back()"
+                style="color: black;text-decoration: none; font-size: small;opacity: .4;margin-right:5px;">back</a>
+        </h6>
+        <div class="mytable">
+            <h3>my appartments</h3>
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

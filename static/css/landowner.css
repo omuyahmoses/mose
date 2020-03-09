@@ -120,8 +120,7 @@ hr {
 .border .borderimage {
     height: 50%;
     border-radius: 5px;
-    margin-left: 5%;
-    width: 90%;
+    width: 100%;
 }
 
 .border .textbox {

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>new rental</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/landowner.css')}}">
+</head>
+
+<body>
+    <div class="row">
+        <div class="dash">
+            <div class="profile">
+                <img class='myprofile' src="{{url_for('static',filename='img/myAvatar.png')}}">
+                <h3>owner</h3>
+            </div>
+            <div class="navlist">
+                <div class="home">
+                    <a href="{{url_for('admin')}}">
+                        <h3>my property</h3>
+                    </a>
+                </div>
+                <div class="home">
+                    <a href="{{url_for('rentalstatus')}}">
+                        <h3>view status</h3>
+                    </a>
+                </div>
+                <div class="home">
+                    <a href="{{url_for('newrental')}}">
+                        <h3>add new property</h3>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+        <hr>
+    </div>
+    <div id="add" class="add">
+        <h6><a href="#" onclick="history.back()"
+                style="color: black;text-decoration: none; font-size: small;opacity: .4;margin-right:5px;">back</a>
+        </h6>
+        <div class="myform">
+            <h3>add new appartment</h3>
+            <h3 style="color:brown">{{errormessage}}</h3>
+            <form action="{{url_for('upload')}}" id='add' method="post" enctype="multipart/form-data">
+                <label for="location">Location:</label>
+                {{form.location}}<br>
+                <label for="price">price:</label>
+                {{form.price}}<br>
+                <label for="description">type of house:</label>
+                {{form.type}}<br>
+                <label for="features">bedrooms:</label>
+                {{form.bedrooms}}<br>
+                <label for="features">bathrooms:</label>
+                {{form.bathrooms}}<br>
+                <label for="features">size <label style='color: red;'>*square feet:</label></label>
+                {{form.squarefeet}}<br>
+                <label for="mages">images:</label>
+                <input type="file" name='images' accept='image/*'><br>
+                <label for="details">brief description:</label>
+                {{form.description}}<br>
+                <input type="submit" value="upload" />
+            </form>
+        </div>
+    </div>
+
+    <body>
+
+    </body>
+
+</html>

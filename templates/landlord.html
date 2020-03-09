@@ -21,12 +21,12 @@
                     </a>
                 </div>
                 <div class="home">
-                    <a href="#update">
-                        <h3>update information</h3>
+                    <a href="{{url_for('rentalstatus')}}">
+                        <h3>view status</h3>
                     </a>
                 </div>
                 <div class="home">
-                    <a href="#add">
+                    <a href="{{url_for('newrental')}}">
                         <h3>add new property</h3>
                     </a>
                 </div>
@@ -36,7 +36,13 @@
         </div>
         <hr>
     </div>
-
+    <!-- <div id="border" class="border">
+        <img src="{{url_for('static',filename='img/banner1.jpg')}}" class="borderimage">
+        <div class="textbox">
+            <h4>luxury</h4>
+            <p>some of our serene appartments</p>
+        </div> -->
+    </div>
     <div id="myproperty" class="myproperty">
         <div>
             <img class="image1" src="{{url_for('static',filename='img/house2.webp')}}">
@@ -108,59 +114,6 @@
                 <a href="" style="color: red; text-decoration: none;">edit</a>
             </div>
 
-        </div>
-    </div>
-    <div id="border" class="border">
-        <img src="{{url_for('static',filename='img/banner1.jpg')}}" class="borderimage">
-        <div class="textbox">
-            <h4>luxury</h4>
-            <p>some of our serene appartments</p>
-        </div>
-    </div>
-    <div id="update" class="update">
-        <div class="myform">
-            <h3>reserve a space</h3>
-            <h5>highlighted fields must be filled</h5>
-            <form action="/reserve" method="post">
-                <label for="name"><a>*</a>full names :</label>
-                <input type="text" name="name" name="name" placeholder="Your full names.." required /><br />
-                <label for="famsize">size of expected occupants:</label>
-                <input type="number" name="famsize" id="famsize" placeholder="regular house occupants.." /><br />
-                <label for="Phone"><a>*</a>phone number:</label>
-                <input type="number" name="phone" placeholder="official phone number.." required /><br />
-                <label for="email"><a>*</a>email:</label>
-                <input type="text" name="email" id="email" placeholder="email.." required /><br />
-                <label for="name"><a>*</a>expected movein date date:</label>
-                <input type="date" name="moveindate" required /><br />
-                <input type="submit" value="reserve" />
-            </form>
-        </div>
-    </div>
-    <div id="border" class="border">
-        <img src="{{url_for('static',filename='img/banner1.jpg')}}" class="borderimage">
-        <div class="textbox">
-            <h4>even more</h4>
-            <p>some of our best</p>
-        </div>
-    </div>
-
-    <div id="add" class="add">
-        <div class="myform">
-            <h3>reserve a space</h3>
-            <h5>highlighted fields must be filled</h5>
-            <form action="/reserve" method="post">
-                <label for="name"><a>*</a>full names :</label>
-                <input type="text" name="name" name="name" placeholder="Your full names.." required /><br />
-                <label for="famsize">size of expected occupants:</label>
-                <input type="number" name="famsize" id="famsize" placeholder="regular house occupants.." /><br />
-                <label for="Phone"><a>*</a>phone number:</label>
-                <input type="number" name="phone" placeholder="official phone number.." required /><br />
-                <label for="email"><a>*</a>email:</label>
-                <input type="text" name="email" id="email" placeholder="email.." required /><br />
-                <label for="name"><a>*</a>expected movein date date:</label>
-                <input type="date" name="moveindate" required /><br />
-                <input type="submit" value="reserve" />
-            </form>
         </div>
     </div>
 
